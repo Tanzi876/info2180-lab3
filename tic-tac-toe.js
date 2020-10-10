@@ -1,39 +1,54 @@
-let playerturn
-let x
-let o
+let xturn
+let state=[]
+let win
 window.onload=function (){
     let board=document.querySelectorAll('#board div')
-     playerturn= false
+    xturn= false
+    win=true
     
-    for (var i=0;board.length-1;i++){
+    for (var i=0;i<board.length;i++){
         board[i].classList.add('square')
-        
-        board[i].removeEventListener('click',XO)
-        board[i].addEventListener('click',XO,
-       {once:true})    
-        
+        board[i].addEventListener('click',function(){
+           console.log("box click")
+            if (xturn==true){
+                board[i].innerHTML="X"
+                board[i].classList.add('square X')
+                console.log("Play X")
+                state.push("X")
+                swap()
+            }else
+            {
+                board[i].innerHTML="O"
+                board[i].classList.add('square o')
+                console.log("Play O")
+                state.push("O")
+                swap()
+                
+            }
+            
+
+        })  
+        board[i].addEventListener('hover',function (){
+            console.log("Mouse Hover")
+            board[i].classList.add('hover')
+            
+        })  
+        Checkwin() 
     }
+    
    
 }
-function XO(e){
-    const box=e.target
-    const currentbox=playerturn?x:o
-     x.innerHTML="X"
-     x.classList.add('square x')
-     o.innerHTML="O"
-     o.classList.add('square o')
-    
-    marker(box,currentbox)
-    swap()
-    hover()
 
-}
-function marker(box,currentbox){
-    box.classList.add(currentbox)
-}
 function swap(){
     
-    playerturn=!playerturn
+    xturn=!xturn
+}
+
+function Checkwin(){
+    var status=document.querySelector('#status div')
+    if (state)
+    status.classList.add('you-won')
+    
 }
 
 
