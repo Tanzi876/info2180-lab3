@@ -1,51 +1,40 @@
-var board;
-var control;
-var game;
-var status;
-
-var x;
-var o;
-var state=[];
-
+let playerturn
+let x
+let o
 window.onload=function (){
-    board=document.getElementById("board").
-    classList.add("square");
-    while(i<= board.rows.length){
-    /*Question 1*/
-    board=document.getElementById("board").
-     classList.add("square");
-     status=document.getElementById("status");
-     control=document.querySelector("control");
-     game=document.getElementById("game");
-
-     /*Question 2*/
-     x=document.getElementById("board").
-     classList.add("square X");
-     x.innerHTML="<strong>X</strong>";
-     board.add(x);
-     o=document.getElementById("board").
-     classList.add("square O");
-     o.innerHTML="<strong>O</strong>";  
-     board.add(o);
-
-     /*Question 3*/
-     board.onmouseover=getElementById.
-     classList.add("hover");
-
-     
-         
-
-     }
+    let board=document.querySelectorAll('#board div')
+     playerturn= false
+    
+    for (var i=0;board.length-1;i++){
+        board[i].classList.add('square')
+        
+        board[i].removeEventListener('click',XO)
+        board[i].addEventListener('click',XO,
+       {once:true})    
+        
+    }
+   
+}
+function XO(e){
+    const box=e.target
+    const currentbox=playerturn?x:o
+     x.innerHTML="X"
+     x.classList.add('square x')
+     o.innerHTML="O"
+     o.classList.add('square o')
+    
+    marker(box,currentbox)
+    swap()
+    hover()
 
 }
-
-
-
-
-
+function marker(box,currentbox){
+    box.classList.add(currentbox)
+}
+function swap(){
     
-
-
+    playerturn=!playerturn
+}
 
 
    
