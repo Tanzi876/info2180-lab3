@@ -4,11 +4,13 @@ let state_X=[]
 
 window.onload=function (){
     let board=document.querySelectorAll('#board div')
-    let button=document.getElementById('button')
+    let button=document.getElementsByClassName('btn')
      xturn= false
         
     for (var i=0;i<board.length;i++){
         board[i].classList.add('square')
+        
+    
         board[i].addEventListener('click',function(){
            console.log("box click")
             if (xturn==true){
@@ -34,26 +36,10 @@ window.onload=function (){
             board[i].classList.add('hover')
             
         }) 
-        button.addEventListener('click',function(){
+        button[i].addEventListener('click',function(){
             console.log("New Game")
-            board[i].removeEventListener('click',function() {
-                console.log("box click")
-                if (xturn==true){
-                    board[i].innerHTML="X"
-                    board[i].classList.add('square.X')
-                    console.log("Play X")
-                    state_X.push("X")
-                    swap()
-                }else
-                {
-                    board[i].innerHTML="O"
-                    board[i].classList.add('square.O')
-                    console.log("Play O")
-                    state_O.push("O")
-                    swap()
-                    
-                }
-            })    
+            board[i].classList.add(square)
+            board[i].innerHTML=""
             state_O=[]
             state_X=[]
         }) 
@@ -67,6 +53,9 @@ window.onload=function (){
     
     
    
+}
+function restart(){
+    button.addEventListener('click',)
 }
 
 function swap(){
